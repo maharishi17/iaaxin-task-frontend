@@ -9,6 +9,7 @@ import { ThemeProvider } from "./Context/ThemeContext";
 import AuthProvider, { useAuth } from "./Context/AuthContext";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import DesktopOnly from "./Components/DesktopOnly";
 
 function PrivateRoute({ children }) {
   const { token } = useAuth();
@@ -23,7 +24,7 @@ function PublicRoute({ children }) {
 export default function App() {
   return (
     <AuthProvider>
-      <ThemeProvider>
+      <ThemeProvider> <DesktopOnly minWidth={1024}>
         <Navbar />
         <div className="main-content container">
           <Routes>
@@ -79,6 +80,7 @@ export default function App() {
           </Routes>
         </div>
         <Footer />
+        </DesktopOnly>
       </ThemeProvider>
     </AuthProvider>
   );
